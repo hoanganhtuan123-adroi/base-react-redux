@@ -7,3 +7,77 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.app-container {
+    .header-container {
+        .navbar {
+            padding: 20px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0) !important;
+            .nav-link {
+                &.active {
+                    color: #00bfff;
+                }
+            }
+            .btn-login {
+                border: 1px solid #010a0c;
+                background: #e9eaeb;
+                padding: 0px 18px;
+                margin-right: 18px;
+                height: 40px;
+            }
+
+            .btn-logout {
+                border: 1px solid #010a0c;
+                background: #313131;
+                padding: 0px 18px;
+                color: #fff;
+                height: 40px;
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
+    .home-container {
+        video {
+            z-index: -1;
+            position: fixed;
+            width: 100%;
+            bottom: -50px;
+        }
+        .home-content {
+            width: 50%;
+            position: relative;
+            left: 50px;
+            top: 100px;
+            .home-header {
+                font-size: 40px;
+                font-weight: 600;
+            }
+            .home-desc {
+                margin-top: 30px;
+                font-size: 22px;
+                width: 70%;
+            }
+            .home-btn {
+                margin-top: 15px;
+                border: 1px solid #010a0c;
+                padding: 10px 20px;
+                background: #010a0c;
+                color: #fff;
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1300px !important;
+    }
+}
