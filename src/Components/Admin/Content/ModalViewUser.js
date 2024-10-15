@@ -1,36 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FiFilePlus } from "react-icons/fi";
-import { putUpdateUser } from "../../../Services/apiService";
 import _ from "lodash";
 
 const ModalViewUser = (props) => {
-    const { show, setShow, fetchUser, userView } = props;
-    console.log("userView", userView);
+    const { show, setShow, userView } = props;
     const handleClose = () => {
         setShow(false);
-        setEmail("");
-        setPassword("");
-        setUsername("");
-        setImage("");
-        setPreviewImage("");
-        setRole("USER");
     };
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("");
-    const [image, setImage] = useState("");
-    const [previewImage, setPreviewImage] = useState("");
-    const [role, setRole] = useState("USER");
-
-    const handleUpload = (e) => {
-        if (e.target && e.target.files && e.target.files[0]) {
-            setPreviewImage(URL.createObjectURL(e.target.files[0]));
-            setImage(e.target.files[0]);
-        }
-    };
-
     return (
         <>
             <Modal
@@ -50,11 +28,8 @@ const ModalViewUser = (props) => {
                             <input
                                 type="email"
                                 className="form-control"
-                                value={email}
-                                disabled
-                                onChange={(e) => {
-                                    setEmail(e.target.value);
-                                }}
+                                value={userView.email}
+                                readOnly
                             />
                         </div>
                         <div className="col-md-6">
@@ -62,9 +37,8 @@ const ModalViewUser = (props) => {
                             <input
                                 type="password"
                                 className="form-control"
-                                disabled
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                value={userView.password}
+                                readOnly
                             />
                         </div>
                         <div className="col-6">
@@ -72,8 +46,8 @@ const ModalViewUser = (props) => {
                             <input
                                 type="text"
                                 className="form-control"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                value={userView.username}
+                                readOnly
                             />
                         </div>
 
@@ -82,10 +56,8 @@ const ModalViewUser = (props) => {
                             <select
                                 id="inputState"
                                 className="form-select"
-                                onChange={(e) => {
-                                    setRole(e.target.value);
-                                }}
-                                value={role}
+                                value={userView.role}
+                                readOnly
                             >
                                 <option value="USER">User</option>
                                 <option value="ADMIN">Admin</option>
@@ -103,19 +75,14 @@ const ModalViewUser = (props) => {
                                 />
                                 Upload File Image
                             </label>
-                            <input
-                                type="file"
-                                hidden
-                                id="labelUpload"
-                                onChange={(e) => {
-                                    handleUpload(e);
-                                }}
-                            />
+                            <input type="file" hidden id="labelUpload" />
                         </div>
 
                         <div className="col-12 img-preview">
-                            {previewImage ? (
-                                <img src={previewImage} />
+                            {userView.image ? (
+                                <img
+                                    src={`data:image/png;base64,${userView.image}`}
+                                />
                             ) : (
                                 <span>Img Preview</span>
                             )}

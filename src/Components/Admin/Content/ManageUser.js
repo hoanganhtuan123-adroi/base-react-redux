@@ -67,8 +67,8 @@ const ManageUser = (props) => {
                     </button>
                 </div>
                 <TableUser
-                    handleShowModalUpdateUser={handleShowModalUpdateUser}
                     listUser={listUser}
+                    handleShowModalUpdateUser={handleShowModalUpdateUser}
                     handleShowModalDeleteUser={handleShowModalDeleteUser}
                     handleShowModalViewUser={handleShowModalViewUser}
                 />
@@ -85,8 +85,8 @@ const ManageUser = (props) => {
                     resetUserData={resetUserData}
                 />
                 <ModalViewUser
-                    show={showModalUpdateUser}
-                    setShow={setShowModalUpdateUser}
+                    show={showModalViewUser}
+                    setShow={setShowModalViewUser}
                     userView={userView}
                     fetchUser={fetchUser}
                 />
@@ -94,6 +94,7 @@ const ManageUser = (props) => {
                     show={showModalDeleteUser}
                     setShow={setShowModalDeleteUser}
                     userDelete={userDelete}
+                    fetchUser={fetchUser}
                 />
             </div>
         </div>

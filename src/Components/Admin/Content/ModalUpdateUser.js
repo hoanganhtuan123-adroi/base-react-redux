@@ -60,7 +60,6 @@ const ModalUpdateUser = (props) => {
             return;
         }
         const data = await putUpdateUser(userUpdate.id, username, role, image);
-        console.log("data >>>", data);
 
         if (data && data.EC === 0) {
             toast.success(data.EM);
